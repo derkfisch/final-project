@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+    <h1>The World's Greatest PokemonGO Assistance</h1>
+    {% if current_user.is_authenticated %}
+        <h5>Gotta Catch 'em all {{ current_user.username }}</h5>
+    {% else %}
+        <h5>Create An Account to Get Started</h5>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="card mt-5">
+                <div class="card-header">Search for a Pokemon</div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        {{ form.csrf_token }}
+                        <div class="input-group">
+                            {{ form.search_term(class="form-control", placeholder="ex. 'Pikachu")}}
+                            {{ form.submit(class="btn btn-success") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col text-center">
+
+            {% for post in posts %}
+                <div class="card mt-5">
+                    <div class="row">
+                        <div class="col-1">
+                            <img src="{{ post.image_url }}" alt="pokemon">
+                        </div>
+                        <div class="col-11">
+                            <div class="card-body">
+                                <h6 class="card-subtitle">{{ post.date_created }}</h6>
+                                <h5 class="card-title">{{ post.pokemon }}</h5>
+                                <p class="card-text">
+                                    <p>Evolutions: {{ post.evolutions }}</p>
+                                    <p>Strengths: {{ post.strengths }}</p>
+                                    <p>Weaknesses: {{ post.weaknesses }}</p>
+                                </p>
+                                {% if post.author == current_user %}
+                                    <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-info w-20">Update</a>
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ post.id }}">
+                                        Trash
+                                    </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModal-{{ post.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ post.pokemon }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        Are you really gonna get rid of our fam, {{ post.pokemon }}, like that?
+                        </div>
+                        <div class="modal-footer">
+                        <a href="{{ url_for('delete_post', post_id=post.id) }}" class="btn btn-info">Bye Bye {{ post.pokemon }}</a>
+                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+{% endblock %}

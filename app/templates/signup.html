@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} Sign Up {% endblock %}
+
+{% block header %}
+    <h1>Create Your PokemonGO Sidekick Account</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <form action="" method="post">
+                        {{ form.csrf_token }}
+
+                        {{ form.username.label }}
+                        {{ form.username(class="form-control", placeholder="Username Goes Here") }}
+
+                        <br>
+
+                        {{ form.trainer_code.label }}
+                        {{ form.trainer_code(class="form-control", placeholder="Trainer Code Goes Here") }}
+
+                        <br>
+
+                        {{ form.email.label }}
+                        {{ form.email(class="form-control", placeholder="Email Goes Here") }}
+
+                        <br>
+
+                        {{ form.password.label }}
+                        {{ form.password(class="form-control", placeholder="Password Goes Here") }}
+
+                        <br>
+
+                        {{ form.confirm_pass.label }}
+                        {{ form.confirm_pass(class="form-control", placeholder="Retype Password") }}
+
+                        <br>
+
+                        {{ form.submit(class="btn btn-success mt-3 w-15")}}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

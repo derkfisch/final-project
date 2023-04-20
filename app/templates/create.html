@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Pokemon Data{% endblock %}
+
+{% block header %}
+    <h1>Add Pokemon Data</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <form action="" method="post">
+                        {{ form.csrf_token }}
+
+                        {{ form.pokemon.label }}
+                        {{ form.pokemon(class="form-control", placeholder="ex. Pikachu") }}
+                        
+                        <br>
+
+                        {{ form.evolutions.label }}
+                        {{ form.evolutions(class="form-control", placeholder="ex. Pichu/Raichu") }}
+
+                        <br>
+                        
+                        {{ form.strengths.label }}
+                        {{ form.strengths(class="form-control", placeholder="ex. Water") }}
+
+                        <br>
+                        
+                        {{ form.weaknesses.label }}
+                        {{ form.weaknesses(class="form-control", placeholder="ex. Ground") }}
+
+                        <br>
+
+                        {{ form.image_url.label }}
+                        {{ form.image_url(class="form-control", placeholder="Enter image URL") }}
+
+                        <br>
+
+                        {{ form.submit(class="btn btn-success mt-3 w-15", value="New Pokemon")}}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

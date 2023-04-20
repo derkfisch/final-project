@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} Sign Up {% endblock %}
+
+{% block header %}
+    <h1>Log In</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <form action="" method="post">
+                        {{ form.csrf_token }}
+
+                        {{ form.username.label }}
+                        {{ form.username(class="form-control", placeholder="Username Goes Here") }}
+
+                        <br>
+
+                        {{ form.password.label }}
+                        {{ form.password(class="form-control", placeholder="Password Goes Here") }}
+
+                        <br>
+
+                        {{ form.submit(class="btn btn-success mt-3 w-15")}}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Post{% endblock %}
+
+{% block header %}
+    <h1>Update {{ post.pokemon }}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <form action="" method="post">
+                        {{ form.csrf_token }}
+
+                        {{ form.pokemon.label }}
+                        {{ form.pokemon(class="form-control") }}
+                        
+                        <br>
+
+                        {{ form.evolutions.label }}
+                        {{ form.evolutions(class="form-control") }}
+
+                        <br>
+                        
+                        {{ form.strengths.label }}
+                        {{ form.strengths(class="form-control") }}
+
+                        <br>
+                        
+                        {{ form.weaknesses.label }}
+                        {{ form.weaknesses(class="form-control") }}
+
+                        <br>
+
+                        {{ form.image_url.label }}
+                        {{ form.image_url(class="form-control") }}
+
+                        <br>
+
+                        {{ form.submit(class="btn btn-success mt-3 w-15", value="Update Pokemon")}}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
