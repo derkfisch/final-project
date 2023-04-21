@@ -10,30 +10,26 @@
             <a class="nav-link" href="/">Home</a>
           </li>
           {% if current_user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="/create">New Pokemon</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">See you later!</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="/signup">New Members</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Have An Account?</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Let Me Assist You
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Evolutions</a></li>
-              <li><a class="dropdown-item" href="#">Strengths</a></li>
-              <li><a class="dropdown-item" href="#">Weaknesses</a></li>
+              <li><a class="dropdown-item" href="/create">New Pokemon</a></li>
+              <li><a class="dropdown-item" href="/logout">Sign out</a></li>
             </ul>
-            {% endif %}
           </li>
+          {% else %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Let Me Assist You
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/signup">New Members</a></li>
+              <li><a class="dropdown-item" href="/login">Welcome Back</a></li>
+            </ul>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>
